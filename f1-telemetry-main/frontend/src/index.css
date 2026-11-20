@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto+Mono:wght@500&display=swap');
+
+:root {
+  --f1-red: #e10600;
+  --bg-dark: #0b0b0b;
+  --panel-bg: rgba(20, 20, 20, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --accent: #00fff2;
+  --font-main: 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-dark);
+  color: white;
+  font-family: var(--font-main);
+  overflow: hidden;
+}
+
+.dashboard-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* --- Broadcast Header --- */
+.broadcast-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 10;
+  border-bottom: 2px solid var(--f1-red);
+}
+
+.logo-group h1 {
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  margin: 0;
+  color: #fff;
+}
+
+.live-indicator {
+  background: var(--f1-red);
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.camera-switcher button {
+  background: rgba(40, 40, 40, 0.7);
+  border: 1px solid var(--glass-border);
+  color: #aaa;
+  margin: 0 5px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.camera-switcher button.active {
+  background: var(--f1-red);
+  color: white;
+  border-color: var(--f1-red);
+}
+
+/* --- Standings Panel --- */
+.standings-panel {
+  position: absolute;
+  top: 100px;
+  left: 30px;
+  width: 280px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  padding: 15px;
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.standings-panel h3 {
+  font-size: 0.8rem;
+  margin-top: 0;
+  opacity: 0.7;
+}
+
+.driver-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.driver-row:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.driver-row.active {
+  border-left: 4px solid var(--f1-red);
+  background: rgba(225, 6, 0, 0.1);
+}
+
+.rank-badge {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  width: 25px;
+}
+
+.driver-color {
+  width: 5px;
+  height: 20px;
+  margin: 0 10px;
+}
+
+.driver-name {
+  flex: 1;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.interval {
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+
+/* --- Telemetry Overlay --- */
+.telemetry-overlay {
+  position: absolute;
+  bottom: 120px;
+  right: 30px;
+  width: 320px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 10;
+}
+
+.driver-badge {
+  background: #333;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
+
+.telemetry-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.value-large {
+  font-size: 2.2rem;
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
+
+.value-large small {
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+.bars-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.bar-wrapper {
+  flex: 1;
+}
+
+.bar-bg {
+  width: 100%;
+  height: 60px;
+  background: #111;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.bar-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transition: height 0.05s ease-out;
+}
+
+.bar-fill.throttle { background: #00ff00; }
+.bar-fill.brake { background: var(--f1-red); }
+
+/* --- Playback Footer --- */
+.playback-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 10;
+  border-top: 1px solid var(--glass-border);
+}
+
+.timeline-container {
+  flex: 1;
+  margin: 0 40px;
+}
+
+.f1-range {
+  width: 100%;
+  accent-color: var(--f1-red);
+}
+
+.time-readout {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 5px;
+  opacity: 0.7;
+}
+
+.active {
+  color: var(--f1-red) !important;
+}
